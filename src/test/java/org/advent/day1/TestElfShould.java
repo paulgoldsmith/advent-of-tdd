@@ -33,8 +33,11 @@ public class TestElfShould {
         Elf elf2 = new Elf();
         elf1.addCalories(1000);
 
+        // Act
+        int compareTo = elf1.compareTo(elf2);
+
         // Act / Assert
-        assertThat(elf1.compareTo(elf2), greaterThan(0));
+        assertThat(compareTo, greaterThan(0));
     }
 
     @Test
@@ -42,6 +45,18 @@ public class TestElfShould {
         // Arrange
         Elf elf1 = new Elf();
         Elf elf2 = new Elf();
+
+        // Act / Assert
+        assertThat(elf1.compareTo(elf2), equalTo(0));
+    }
+
+    @Test
+    void compare_zero_for_equal_elf_where_calories_are_non_zero() {
+        // Arrange
+        Elf elf1 = new Elf();
+        Elf elf2 = new Elf();
+        elf1.addCalories(1000);
+        elf2.addCalories(1000);
 
         // Act / Assert
         assertThat(elf1.compareTo(elf2), equalTo(0));
