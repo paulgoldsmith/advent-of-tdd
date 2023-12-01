@@ -1,0 +1,37 @@
+{
+  "name": "advent-of-tdd",
+  "version": "1.0.0",
+  "description": "Advent of TDD",
+  "type": "module",
+  "engines": {
+    "node": ">= 18.12 <19"
+  },
+  "scripts": {
+    "clean": "rimraf day*/coverage day*/build day*/tmp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulgoldsmith/advent-of-tdd.git"
+  },
+  "author": "Paul Goldsmith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paulgoldsmith/advent-of-tdd/issues"
+  },
+  "homepage": "https://github.com/paulgoldsmith/advent-of-tdd#readme",
+  "devDependencies": {
+    "@types/jest": "~29.5",
+    "@types/node": "~18",
+    "@typescript-eslint/eslint-plugin": "~6.2",
+    "@typescript-eslint/parser": "~6.2",
+    "eslint": "~8.46",
+    "eslint-config-prettier": "~9.0",
+    "eslint-plugin-jest": "~27.2",
+    "jest": "~29.7",
+    "prettier": "~3.0",
+    "rimraf": "~5.0",
+    "ts-api-utils": "~1.0",
+    "ts-jest": "~29.1",
+    "typescript": "~5.1"
+  }
+}
