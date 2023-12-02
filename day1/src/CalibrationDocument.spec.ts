@@ -166,6 +166,15 @@ describe('the calibration document', () => {
         expect(calibrationDocument.sum()).toEqual(24);
     });
 
+    it('cannot be created with the word zero', () => {
+        // Arrange / Act
+        const calibrationDocument = new CalibrationDocument();
+        calibrationDocument.addLine('zerorrrtwo');
+
+        // Assert
+        expect(calibrationDocument.sum()).toEqual(22);
+    });
+
     it('can be created with multiple lines containing a word and digit numbers', () => {
         // Arrange / Act
         const calibrationDocument = new CalibrationDocument();
