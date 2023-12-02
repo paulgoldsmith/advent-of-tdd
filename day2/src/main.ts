@@ -1,10 +1,10 @@
-import { Game } from "./Game.js";
 import minimist from 'minimist';
 import fs from "fs";
 import path from "path";
 import readline from "readline";
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { GameMatcher } from "./GameMatcher.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -19,13 +19,13 @@ try {
     process.exit(1);
 }
 
-//const readInterface = readline.createInterface({
-//  input: fs.createReadStream(path.join(__dirname, '..', '..', gameMatchFileInput))
-//});
+const readInterface = readline.createInterface({
+  input: fs.createReadStream(path.join(__dirname, '..', '..', gameMatchFileInput))
+});
 
-//const game = new Game();
-// for await (const line of readInterface){
-    
-// }
+const gameMatcher = new GameMatcher();
+for await (const line of readInterface){
+    gameMatcher.addGame(line);
+}
 
 //console.log(`The game match sum is ${gameMatch.sum()}`);

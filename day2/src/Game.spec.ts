@@ -3,12 +3,25 @@ import { Game } from "./Game.js";
 describe('the game', () => {
     let game: Game;
     beforeEach(() => {
-        game = new Game();
+        game = new Game(1);
     });
 
     it('can be created', () => {
         // Assert
         expect(game).toBeDefined();
+        expect(game.gameId).toEqual(1);
+    });
+
+    it('can be created many times with different ids', () => {
+        // Arrange
+        const game1 = new Game(44);
+        const game2 = new Game(45);
+
+        // Assert
+        expect(game1).toBeDefined();
+        expect(game1.gameId).toEqual(44);
+        expect(game2).toBeDefined();
+        expect(game2.gameId).toEqual(45);
     });
 
     it('will have all color maximums to 0 with no cube grabs', () => {

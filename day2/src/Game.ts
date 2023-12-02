@@ -1,6 +1,11 @@
-enum CubeColorValues { 'red', 'green', 'blue' };
-export type CubeColors = keyof typeof CubeColorValues;
+import { CubeColorValues, CubeColors } from "./CubeColors.js";
+
 export class Game {
+
+    constructor(public readonly gameId: number) {
+
+    }
+
     private maxCubeColors: Map<CubeColors, number> = new Map([
         ['red', 0],
         ['green', 0],
