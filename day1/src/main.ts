@@ -1,5 +1,5 @@
-async function bootstrap() {
+import { CalibrationDocument } from "./CalibrationDocument.js";
 
-}
+const document = new CalibrationDocument();
 
-bootstrap();
+console.log(document.sum());

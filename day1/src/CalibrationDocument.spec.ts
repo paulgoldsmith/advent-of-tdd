@@ -64,6 +64,6 @@ describe('the calibration document', () => {
         calibrationDocument.addLine('treb7uchet');
 
         // Assert
-        expect(calibrationDocument.sum()).toEqual(78);
+        expect(calibrationDocument.sum()).toEqual(142);
     });
 });
