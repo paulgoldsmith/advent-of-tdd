@@ -203,4 +203,48 @@ describe('the GameMatcher', () => {
             expect(gameMatcher.sumPossible()).toEqual(8);
         });
     });
+
+    describe('power of cube games', () => {
+        let gameMatcher;
+        beforeEach(() => {
+            gameMatcher = new GameMatcher(new Map());
+        });
+
+        it('can factor no games', () => {
+            // Assert
+            expect(gameMatcher.powerOfCubes()).toEqual(0);
+        });
+
+        it('can factor power of one game with one color', () => {
+            // Arrange
+            const game = 'Game 1: 3 blue';
+            gameMatcher.addGame(game);
+            // Assert
+            expect(gameMatcher.powerOfCubes()).toEqual(3);
+        });
+
+        it('can factor power of one game with multiple colors', () => {
+            // Arrange
+            const game = 'Game 1: 3 blue, 5 red, 9 green';
+            gameMatcher.addGame(game);
+            // Assert
+            expect(gameMatcher.powerOfCubes()).toEqual(135);
+        });
+
+        it('can factor power of multiple games with multiple colors', () => {
+            // Arrange
+            const game1 = 'Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green';
+            const game2 = 'Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue';
+            const game3 = 'Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red';
+            const game4 = 'Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red';
+            const game5 = 'Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green';
+            gameMatcher.addGame(game1);
+            gameMatcher.addGame(game2);
+            gameMatcher.addGame(game3);
+            gameMatcher.addGame(game4);
+            gameMatcher.addGame(game5);
+            // Assert
+            expect(gameMatcher.powerOfCubes()).toEqual(2286);
+        });
+    });
 });
