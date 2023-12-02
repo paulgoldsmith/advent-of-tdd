@@ -7,7 +7,7 @@ export class GameMatcher {
     }
 
     private parseGameInput(gameInput: string): Game {
-        const prefixMatch = gameInput.match(/^Game (\d+):([\sa-z;,]+)$/);
+        const prefixMatch = gameInput.match(/^Game (\d+):([\sa-z\d;,]+)$/);
         if (!prefixMatch) {
             throw 'Game prefix did not match the expected format';
         }
@@ -24,7 +24,7 @@ export class GameMatcher {
             }
             const randomCubeHandful = new Map<CubeColors, number>();
             for (const cubes of cubeSets) {
-                const matchCube = cubes.match(/^\s?(\d+)\s([red|green|blue])$/);
+                const matchCube = cubes.match(/^\s(\d+)\s(red|green|blue)$/);
                 if (!matchCube) {
                     throw 'Unexpected format for color cube set';
                 }
