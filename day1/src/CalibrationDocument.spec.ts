@@ -10,6 +10,33 @@ describe('the calibration document', () => {
         expect(calibrationDocument.sum()).toEqual(0);
     });
 
+    it('can be created with one line being null', () => {
+        // Arrange / Act
+        const calibrationDocument = new CalibrationDocument();
+        calibrationDocument.addLine(null);
+
+        // Assert
+        expect(calibrationDocument.sum()).toEqual(0);
+    });
+
+    it('can be created with one line being undefined', () => {
+        // Arrange / Act
+        const calibrationDocument = new CalibrationDocument();
+        calibrationDocument.addLine(undefined);
+
+        // Assert
+        expect(calibrationDocument.sum()).toEqual(0);
+    });
+
+    it('can be created with one line being empty', () => {
+        // Arrange / Act
+        const calibrationDocument = new CalibrationDocument();
+        calibrationDocument.addLine('');
+
+        // Assert
+        expect(calibrationDocument.sum()).toEqual(0);
+    });
+
     it('can be created with one line containing only alphabetic characters', () => {
         // Arrange / Act
         const calibrationDocument = new CalibrationDocument();
@@ -18,7 +45,6 @@ describe('the calibration document', () => {
         // Assert
         expect(calibrationDocument.sum()).toEqual(0);
     });
-
 
     it('can be created with one line containing only special characters', () => {
         // Arrange / Act

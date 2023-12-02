@@ -23,6 +23,7 @@ export class CalibrationDocument {
     }
 
     public addLine(line: string): void {
+        line = line || '';
         this.calculatedSum += this.parse(line);
     }
 
