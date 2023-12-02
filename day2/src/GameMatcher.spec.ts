@@ -1,14 +1,23 @@
-import { CubeColors } from "./CubeColors.js";
 import { GameMatcher } from "./GameMatcher.js";
 
 describe('the GameMatcher', () => {
-    let gameMatcher: GameMatcher;
-    beforeEach(() => {
-        gameMatcher = new GameMatcher();
-    });
-
     describe('the class', () => {
-        it('can be created', () => {
+        it('can be created with no maximum colors', () => {
+            // Act
+            const gameMatcher = new GameMatcher(new Map([
+                ['red', 12],
+                ['green', 13],
+                ['blue', 14]
+            ]));
+
+            // Assert
+            expect(gameMatcher).toBeDefined();
+        });
+
+        it('can be created with all maximum colors', () => {
+            // Act
+            const gameMatcher = new GameMatcher(new Map());
+
             // Assert
             expect(gameMatcher).toBeDefined();
         });
@@ -17,7 +26,7 @@ describe('the GameMatcher', () => {
     describe('setting the maximum colors counts', () => {
         it('can set maximum counts of one color to be non-zero', () => {
             // Act
-            gameMatcher.setMaximumColorCount(new Map<CubeColors, number>([
+            const gameMatcher = new GameMatcher(new Map([
                 ['red', 10]
             ]));
     
@@ -27,7 +36,7 @@ describe('the GameMatcher', () => {
 
         it('can set maximum counts of all colors to be non-zero', () => {
             // Act
-            gameMatcher.setMaximumColorCount(new Map<CubeColors, number>([
+            const gameMatcher = new GameMatcher(new Map([
                 ['red', 12],
                 ['green', 13],
                 ['blue', 14]
@@ -39,6 +48,11 @@ describe('the GameMatcher', () => {
     });
 
     describe('adding games from a line of text', () => {
+        let gameMatcher;
+        beforeEach(() => {
+            gameMatcher = new GameMatcher(new Map());
+        });
+
         it('throws an error for a completely invalid input', () => {
             // Arrange
             const game = 'This is not of the expected form';
@@ -131,8 +145,9 @@ describe('the GameMatcher', () => {
     });
 
     describe('getting the sum of game ids that are possible', () => {
+        let gameMatcher;
         beforeEach(() => {
-            gameMatcher.setMaximumColorCount(new Map([
+            gameMatcher = new GameMatcher(new Map([
                 ['red', 12],
                 ['green', 13],
                 ['blue', 14]
