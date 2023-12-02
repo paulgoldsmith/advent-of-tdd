@@ -34,3 +34,4 @@ for await (const line of readInterface){
 }
 
 console.log(`The game match sum is ${gameMatcher.sumPossible()}`);
+console.log(`The game match power is ${gameMatcher.powerOfCubes()}`);
