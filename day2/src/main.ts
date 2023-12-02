@@ -1,4 +1,4 @@
-import { CalibrationDocument } from "./CalibrationDocument.js";
+import { Game } from "./Game.js";
 import minimist from 'minimist';
 import fs from "fs";
 import path from "path";
@@ -23,9 +23,9 @@ const readInterface = readline.createInterface({
   input: fs.createReadStream(path.join(__dirname, '..', '..', calibrationDocumentFileInput))
 });
 
-const document = new CalibrationDocument();
-for await (const line of readInterface){
-    document.addLine(line);
-}
+const game = new Game();
+// for await (const line of readInterface){
+    
+// }
 
-console.log(`The calibrated document value is ${document.sum()}`);
+console.log(`The game match sum is ${gameMatch.sum()}`);
