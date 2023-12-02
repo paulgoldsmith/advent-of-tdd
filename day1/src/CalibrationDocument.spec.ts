@@ -178,6 +178,6 @@ describe('the calibration document', () => {
         calibrationDocument.addLine('7pqrstsixteen');
 
         // Assert
-        expect(calibrationDocument.sum()).toEqual(24);
+        expect(calibrationDocument.sum()).toEqual(281);
     });
 });
