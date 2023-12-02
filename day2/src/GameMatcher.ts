@@ -60,4 +60,24 @@ export class GameMatcher {
         }
         return sum;
     }
+
+    public powerOfCubes(): number {
+        let powerTotal = 0;
+        for (const game of this.games) {
+            const gameMaxColorCubes = game.acquireMaxColorCubes();
+            let powerOfGame = 1;
+            let powerOfGameChanged = false;
+            for (const color of Object.keys(CubeColorValues) as CubeColors[]) {
+                const gameMaxColorCube = gameMaxColorCubes.get(color);
+                if (gameMaxColorCube > 0) {
+                    powerOfGame *= gameMaxColorCube;
+                    powerOfGameChanged = true;
+                }
+            }
+            if (powerOfGameChanged) {
+                powerTotal += powerOfGame;
+            }
+        }        
+        return powerTotal;
+    }
 }
