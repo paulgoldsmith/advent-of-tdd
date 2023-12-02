@@ -24,15 +24,13 @@ const readInterface = readline.createInterface({
   input: fs.createReadStream(path.join(__dirname, '..', '..', gameMatchFileInput))
 });
 
-const gameMatcher = new GameMatcher();
-for await (const line of readInterface){
-    gameMatcher.addGame(line);
-}
-
-gameMatcher.setMaximumColorCount(new Map<CubeColors, number>([
+const gameMatcher = new GameMatcher(new Map<CubeColors, number>([
     ['red', 12],
     ['green', 13],
     ['blue', 14]
 ]));
+for await (const line of readInterface){
+    gameMatcher.addGame(line);
+}
 
-console.log(`The game match sum is ${gameMatch.sum()}`);
+console.log(`The game match sum is ${gameMatcher.sumPossible()}`);

@@ -7,11 +7,10 @@ export class GameMatcher {
     }
 
     private parseGameInput(gameInput: string): Game {
-        const prefixMatch = gameInput.match(/^Game (\d+):([\sa-z\d;,]+)$/);
+        const [prefixMatch, gameId, handfulsInput] = gameInput.match(/^Game (\d+):([\sa-z\d;,]+)$/);
         if (!prefixMatch) {
             throw 'Game prefix did not match the expected format';
         }
-        const [_, gameId, handfulsInput] = prefixMatch;
         const game = new Game(parseInt(gameId));
         const handfuls = handfulsInput.split(';');
         if (handfuls.length < 1) {
@@ -24,11 +23,10 @@ export class GameMatcher {
             }
             const randomCubeHandful = new Map<CubeColors, number>();
             for (const cubes of cubeSets) {
-                const matchCube = cubes.match(/^\s(\d+)\s(red|green|blue)$/);
+                const  [matchCube, count, color] = cubes.match(/^\s(\d+)\s(red|green|blue)$/);
                 if (!matchCube) {
                     throw 'Unexpected format for color cube set';
                 }
-                const [_, count, color] = matchCube;
                 if (randomCubeHandful.has(color as CubeColors)) {
                     throw 'Cannot have the same color twice in a single handful';
                 }
