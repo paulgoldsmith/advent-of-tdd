@@ -2,7 +2,7 @@ import { GameMatcher } from "./GameMatcher.js";
 
 describe('the GameMatcher', () => {
     describe('the class', () => {
-        it('can be created with no maximum colors', () => {
+        it('can be created with maximum colors', () => {
             // Act
             const gameMatcher = new GameMatcher(new Map([
                 ['red', 12],
@@ -14,7 +14,7 @@ describe('the GameMatcher', () => {
             expect(gameMatcher).toBeDefined();
         });
 
-        it('can be created with all maximum colors', () => {
+        it('can be created with no maximum colors', () => {
             // Act
             const gameMatcher = new GameMatcher(new Map());
 
@@ -48,7 +48,7 @@ describe('the GameMatcher', () => {
     });
 
     describe('adding games from a line of text', () => {
-        let gameMatcher;
+        let gameMatcher: GameMatcher;
         beforeEach(() => {
             gameMatcher = new GameMatcher(new Map());
         });
@@ -145,7 +145,7 @@ describe('the GameMatcher', () => {
     });
 
     describe('getting the sum of game ids that are possible', () => {
-        let gameMatcher;
+        let gameMatcher: GameMatcher;
         beforeEach(() => {
             gameMatcher = new GameMatcher(new Map([
                 ['red', 12],
@@ -205,7 +205,7 @@ describe('the GameMatcher', () => {
     });
 
     describe('power of cube games', () => {
-        let gameMatcher;
+        let gameMatcher: GameMatcher;
         beforeEach(() => {
             gameMatcher = new GameMatcher(new Map());
         });

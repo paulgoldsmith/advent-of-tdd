@@ -51,7 +51,7 @@ export class GameMatcher {
                 const maxColorCountCube = this.maxColorCounts.get(color);
                 if (gameMaxColorCube > maxColorCountCube) {
                     possible = false;
-                    continue;
+                    break;
                 }
             }
             if (possible) {

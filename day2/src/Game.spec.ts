@@ -6,7 +6,7 @@ describe('the game', () => {
         game = new Game(1);
     });
 
-    it('can be created', () => {
+    it('can be created with a game ID', () => {
         // Assert
         expect(game).toBeDefined();
         expect(game.gameId).toEqual(1);
