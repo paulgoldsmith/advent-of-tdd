@@ -1,4 +1,17 @@
 export class CalibrationDocument {
+    private forwardNumberWords = [
+        'one',
+        'two',
+        'three',
+        'four',
+        'five',
+        'six',
+        'seven',
+        'eight',
+        'nine'
+    ];
+    private backwardNumberWords = this.forwardNumberWords.map(number => number.split('').reverse().join(''));
+
     private calculatedSum: number;
 
     constructor() {
@@ -9,17 +22,27 @@ export class CalibrationDocument {
         return this.calculatedSum;
     }
 
+    private findFirstNumber(line: string, numberWords: string[]): string {
+        if (line.length < 1) {
+            return '';
+        }
+        if (line[0].match(/\d/)) {
+            return line[0];
+        }
+        const index = numberWords.findIndex((numberWord) => line.match(`^${numberWord}`));
+        if (index > -1) {
+            return `${index + 1}`;
+        }
+        return this.findFirstNumber(line.substring(1), numberWords);
+    }
+
     private parse(line: string): number {
-        const twoNumberMatch = line.match(/^[A-Za-z]*(\d)([A-Za-z\d]*)(\d)[A-Za-z]*$/);
-        if (twoNumberMatch ) {
-            return parseInt(`${twoNumberMatch[1]}${twoNumberMatch[3]}`);
+        const firstNumber = this.findFirstNumber(line, this.forwardNumberWords);
+        if (!firstNumber) {
+            return 0;
         }
-        const oneNumberMatch = line.match(/^[A-Za-z]*(\d)[A-Za-z]*$/);
-        if (oneNumberMatch) {
-            const singleNumber = parseInt(oneNumberMatch[1]);
-            return parseInt(`${singleNumber}${singleNumber}`);
-        }
-        return 0;
+        const secondNumber = this.findFirstNumber(line.split('').reverse().join(''), this.backwardNumberWords) || firstNumber;
+        return parseInt(`${firstNumber}${secondNumber}`);
     }
 
     public addLine(line: string): void {
