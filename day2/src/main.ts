@@ -5,6 +5,7 @@ import readline from "readline";
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { GameMatcher } from "./GameMatcher.js";
+import { CubeColors } from './CubeColors.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -28,4 +29,10 @@ for await (const line of readInterface){
     gameMatcher.addGame(line);
 }
 
-//console.log(`The game match sum is ${gameMatch.sum()}`);
+gameMatcher.setMaximumColorCount(new Map<CubeColors, number>([
+    ['red', 12],
+    ['green', 13],
+    ['blue', 14]
+]));
+
+console.log(`The game match sum is ${gameMatch.sum()}`);
