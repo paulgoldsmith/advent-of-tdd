@@ -13,7 +13,7 @@ describe('the game', () => {
 
     it('will have all color maximums to 0 with no cube grabs', () => {
         // Assert
-        expect(game.acquireMaxColorCubes()).toBe(new Map([
+        expect(game.acquireMaxColorCubes()).toEqual(new Map([
             ['red', 0],
             ['green', 0],
             ['blue', 0]
@@ -29,7 +29,7 @@ describe('the game', () => {
         ]));
 
         // Assert
-        expect(game.acquireMaxColorCubes()).toBe(new Map([
+        expect(game.acquireMaxColorCubes()).toEqual(new Map([
             ['red', 1],
             ['green', 2],
             ['blue', 6]
@@ -52,7 +52,7 @@ describe('the game', () => {
         ]));
 
         // Assert
-        expect(game.acquireMaxColorCubes()).toBe(new Map([
+        expect(game.acquireMaxColorCubes()).toEqual(new Map([
             ['red', 8],
             ['green', 2],
             ['blue', 6]
@@ -75,7 +75,7 @@ describe('the game', () => {
         ]));
 
         // Assert
-        expect(game.acquireMaxColorCubes()).toBe(new Map([
+        expect(game.acquireMaxColorCubes()).toEqual(new Map([
             ['red', 5],
             ['green', 6],
             ['blue', 6]
@@ -98,7 +98,7 @@ describe('the game', () => {
         ]));
 
         // Assert
-        expect(game.acquireMaxColorCubes()).toBe(new Map([
+        expect(game.acquireMaxColorCubes()).toEqual(new Map([
             ['red', 5],
             ['green', 2],
             ['blue', 9]
@@ -117,7 +117,7 @@ describe('the game', () => {
         ]));
 
         // Assert
-        expect(game.acquireMaxColorCubes()).toBe(new Map([
+        expect(game.acquireMaxColorCubes()).toEqual(new Map([
             ['red', 8],
             ['green', 2],
             ['blue', 6]
@@ -136,7 +136,7 @@ describe('the game', () => {
         ]));
 
         // Assert
-        expect(game.acquireMaxColorCubes()).toBe(new Map([
+        expect(game.acquireMaxColorCubes()).toEqual(new Map([
             ['red', 5],
             ['green', 2],
             ['blue', 6]
