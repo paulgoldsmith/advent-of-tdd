@@ -1,4 +1,4 @@
-import { CubeColors } from "./CubeColors.js";
+import { CubeColorValues, CubeColors } from "./CubeColors.js";
 import { Game } from "./Game.js";
 
 export class GameMatcher {
@@ -40,11 +40,23 @@ export class GameMatcher {
     }
 
     public addGame(gameInput: string): void {
-        this.games.push(this.parseGameInput(gameInput));
+        const game = this.parseGameInput(gameInput);
+        const gameMaxColorCubes = game.acquireMaxColorCubes();
+        for (const color of Object.keys(CubeColorValues) as CubeColors[]) {
+            const gameMaxColorCube = gameMaxColorCubes.get(color);
+            const maxColorCountCube = this.maxColorCounts.get(color);
+            if (gameMaxColorCube > maxColorCountCube) {
+                return;
+            }
+        }
+        this.games.push(game);
     }
 
     public sumPossible(): number {
-        this.maxColorCounts;
-        return 0;
+        let sum = 0;
+        for (const game of this.games) {
+            sum += game.gameId;
+        }
+        return sum;
     }
 }
