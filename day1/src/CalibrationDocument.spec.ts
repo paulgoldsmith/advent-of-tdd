@@ -1,18 +1,19 @@
 import { CalibrationDocument } from "./CalibrationDocument.js";
 
 describe('the calibration document', () => {
-    it('can be created empty', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+    let calibrationDocument;
+    beforeEach(() => {
+        calibrationDocument = new CalibrationDocument();
+    });
 
+    it('can be created empty', () => {
         // Assert
         expect(calibrationDocument).toBeDefined();
         expect(calibrationDocument.sum()).toEqual(0);
     });
 
     it('can be created with one line being null', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine(null);
 
         // Assert
@@ -20,8 +21,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with one line being undefined', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine(undefined);
 
         // Assert
@@ -29,8 +29,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with one line being empty', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('');
 
         // Assert
@@ -38,8 +37,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with one line containing only alphabetic characters', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('abs');
 
         // Assert
@@ -47,8 +45,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with one line containing only special characters', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('!@#%');
 
         // Assert
@@ -56,8 +53,7 @@ describe('the calibration document', () => {
     });
     
     it('can be created with one line containing only numbers', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('12');
 
         // Assert
@@ -65,8 +61,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with one line containing numbers and letters with numbers first and last', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('2abc3');
 
         // Assert
@@ -74,8 +69,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with one line containing numbers and letters with numbers in the middle', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('a4b6c');
 
         // Assert
@@ -83,8 +77,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with one line containing numbers and letters with a single number', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('a5bc');
 
         // Assert
@@ -92,8 +85,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with one line containing numbers and letters with numbers at the end', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('abc78');
 
         // Assert
@@ -101,8 +93,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with multiple lines containing numbers and letters', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('1abc2');
         calibrationDocument.addLine('pqr3stu8vwx');
         calibrationDocument.addLine('a1b2c3d4e5f');
@@ -113,8 +104,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with one line containing a word number', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('one');
 
         // Assert
@@ -122,8 +112,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with one line containing two word numbers', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('twothree');
 
         // Assert
@@ -131,8 +120,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with one line containing two word numbers and other letters in between', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('fourssssfive');
 
         // Assert
@@ -140,8 +128,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with one line containing two word numbers and other letters before and after', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('abcsixsevendef');
 
         // Assert
@@ -149,8 +136,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with one line containing two word numbers and other letters before, after and in between', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('abceightdefninehij');
 
         // Assert
@@ -158,8 +144,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with one line containing a word number first and digit number last and other numbers and letters before and after', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('rrrtwossssninexxx4zzz');
 
         // Assert
@@ -167,8 +152,7 @@ describe('the calibration document', () => {
     });
 
     it('cannot be created with the word zero', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('zerorrrtwo');
 
         // Assert
@@ -176,8 +160,7 @@ describe('the calibration document', () => {
     });
 
     it('can be created with multiple lines containing a word and digit numbers', () => {
-        // Arrange / Act
-        const calibrationDocument = new CalibrationDocument();
+        // Act
         calibrationDocument.addLine('two1nine');
         calibrationDocument.addLine('eightwothree');
         calibrationDocument.addLine('abcone2threexyz');
