@@ -10,6 +10,25 @@ describe('the calibration document', () => {
         expect(calibrationDocument.sum()).toEqual(0);
     });
 
+    it('can be created with one line containing only alphabetic characters', () => {
+        // Arrange / Act
+        const calibrationDocument = new CalibrationDocument();
+        calibrationDocument.addLine('abs');
+
+        // Assert
+        expect(calibrationDocument.sum()).toEqual(0);
+    });
+
+
+    it('can be created with one line containing only special characters', () => {
+        // Arrange / Act
+        const calibrationDocument = new CalibrationDocument();
+        calibrationDocument.addLine('!@#%');
+
+        // Assert
+        expect(calibrationDocument.sum()).toEqual(0);
+    });
+    
     it('can be created with one line containing only numbers', () => {
         // Arrange / Act
         const calibrationDocument = new CalibrationDocument();
