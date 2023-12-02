@@ -111,4 +111,73 @@ describe('the calibration document', () => {
         // Assert
         expect(calibrationDocument.sum()).toEqual(142);
     });
+
+    it('can be created with one line containing a word number', () => {
+        // Arrange / Act
+        const calibrationDocument = new CalibrationDocument();
+        calibrationDocument.addLine('one');
+
+        // Assert
+        expect(calibrationDocument.sum()).toEqual(11);
+    });
+
+    it('can be created with one line containing two word numbers', () => {
+        // Arrange / Act
+        const calibrationDocument = new CalibrationDocument();
+        calibrationDocument.addLine('twothree');
+
+        // Assert
+        expect(calibrationDocument.sum()).toEqual(23);
+    });
+
+    it('can be created with one line containing two word numbers and other letters in between', () => {
+        // Arrange / Act
+        const calibrationDocument = new CalibrationDocument();
+        calibrationDocument.addLine('fourssssfive');
+
+        // Assert
+        expect(calibrationDocument.sum()).toEqual(45);
+    });
+
+    it('can be created with one line containing two word numbers and other letters before and after', () => {
+        // Arrange / Act
+        const calibrationDocument = new CalibrationDocument();
+        calibrationDocument.addLine('abcsixsevendef');
+
+        // Assert
+        expect(calibrationDocument.sum()).toEqual(67);
+    });
+
+    it('can be created with one line containing two word numbers and other letters before, after and in between', () => {
+        // Arrange / Act
+        const calibrationDocument = new CalibrationDocument();
+        calibrationDocument.addLine('abceightdefninehij');
+
+        // Assert
+        expect(calibrationDocument.sum()).toEqual(89);
+    });
+
+    it('can be created with one line containing a word number first and digit number last and other numbers and letters before and after', () => {
+        // Arrange / Act
+        const calibrationDocument = new CalibrationDocument();
+        calibrationDocument.addLine('rrrtwossssninexxx4zzz');
+
+        // Assert
+        expect(calibrationDocument.sum()).toEqual(24);
+    });
+
+    it('can be created with multiple lines containing a word and digit numbers', () => {
+        // Arrange / Act
+        const calibrationDocument = new CalibrationDocument();
+        calibrationDocument.addLine('two1nine');
+        calibrationDocument.addLine('eightwothree');
+        calibrationDocument.addLine('abcone2threexyz');
+        calibrationDocument.addLine('xtwone3four');
+        calibrationDocument.addLine('4nineeightseven2');
+        calibrationDocument.addLine('zoneight234');
+        calibrationDocument.addLine('7pqrstsixteen');
+
+        // Assert
+        expect(calibrationDocument.sum()).toEqual(24);
+    });
 });
