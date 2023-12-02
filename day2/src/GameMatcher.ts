@@ -38,22 +38,25 @@ export class GameMatcher {
     }
 
     public addGame(gameInput: string): void {
-        const game = this.parseGameInput(gameInput);
-        const gameMaxColorCubes = game.acquireMaxColorCubes();
-        for (const color of Object.keys(CubeColorValues) as CubeColors[]) {
-            const gameMaxColorCube = gameMaxColorCubes.get(color);
-            const maxColorCountCube = this.maxColorCounts.get(color);
-            if (gameMaxColorCube > maxColorCountCube) {
-                return;
-            }
-        }
-        this.games.push(game);
+        this.games.push(this.parseGameInput(gameInput));
     }
 
     public sumPossible(): number {
         let sum = 0;
         for (const game of this.games) {
-            sum += game.gameId;
+            const gameMaxColorCubes = game.acquireMaxColorCubes();
+            let possible = true;
+            for (const color of Object.keys(CubeColorValues) as CubeColors[]) {
+                const gameMaxColorCube = gameMaxColorCubes.get(color);
+                const maxColorCountCube = this.maxColorCounts.get(color);
+                if (gameMaxColorCube > maxColorCountCube) {
+                    possible = false;
+                    continue;
+                }
+            }
+            if (possible) {
+                sum += game.gameId;
+            }
         }
         return sum;
     }
