@@ -216,6 +216,18 @@ describe('the engine schematic', () => {
             expect(sum).toEqual(77);
         });
 
+        fit('can generate a sum when two numbers are adjacent to a multiply symbol', () => {
+            //Arrange
+            const engineSchematic = new EngineSchematic(`32.
+45*
+...`);
+            //Act
+            const sum = engineSchematic.sum(true);
+
+            // Assert
+            expect(sum).toEqual(77);
+        });
+
         it('can generate a sum when no numbers are adjacent to a symbol', () => {
             //Arrange
             const engineSchematic = new EngineSchematic(`32.
