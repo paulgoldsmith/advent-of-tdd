@@ -1,7 +1,7 @@
 export class EngineSchematic {
     private schematic: string[];
-    private readonly ACCEPTED_CHARACTERS = /^[\n\d@#$%&*\-+=.]*$/mg;
-    private readonly ENGINE_SYMBOLS = /[@#$%&*\-+=]+/;
+    private readonly ACCEPTED_CHARACTERS = /^[\n\d/@#$%&*\-+=.]*$/g;
+    private readonly ENGINE_SYMBOLS = /[/@#$%&*\-+=]+/;
 
     private parseSchematicInput(schematicInput: string): string[] {
         if (!schematicInput.match(this.ACCEPTED_CHARACTERS)) {
@@ -24,7 +24,7 @@ export class EngineSchematic {
     private isNumberAdjacentToSymbols(lineNumber: number, characterNumber: number, numberLength: number): boolean {
         const beforeLocation = characterNumber - 1;
         const afterLocation = characterNumber + numberLength;
-        for (let i = lineNumber - 1; i <= lineNumber + 1; i++) {
+        for (let i = lineNumber - 1; i <= lineNumber + 1 && i < this.schematic.length; i++) {
             if (i >= 0) {
                 for (let j = beforeLocation; j <= afterLocation && j < this.schematic[i].length; j++) {
                     if (j >= 0 && this.schematic[i][j].match(this.ENGINE_SYMBOLS)) {
