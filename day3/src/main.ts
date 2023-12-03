@@ -1,4 +1,4 @@
-import { Name } from "./Name.js";
+import { EngineSchematic } from "./EngineSchematic.js";
 import minimist from 'minimist';
 import fs from "fs";
 import path from "path";
@@ -23,7 +23,7 @@ const readInterface = readline.createInterface({
   input: fs.createReadStream(path.join(__dirname, '..', '..', calibrationDocumentFileInput))
 });
 
-const document = new Name();
+const engineSchematic = new EngineSchematic();
 // for await (const line of readInterface){
 //     document.addLine(line);
 // }
