@@ -179,6 +179,25 @@ describe('the engine schematic', () => {
             expect(sum).toEqual(4361);
         });
 
+        
+        it('can generate a sum for a modified version of the engine schematic example', () => {
+            //Arrange
+            const engineSchematic = new EngineSchematic(`467..114..
+...@......
+..35...633
+.......#..
+617=......
+.....+.58.
+..592.....
+......755.
+...$./....
+.664.598..`);
+            //Act
+            const sum = engineSchematic.sum();
+
+            // Assert
+            expect(sum).toEqual(4361);
+        });
     });
 
 });

@@ -1,10 +1,16 @@
 import { EngineSchematic } from "./EngineSchematic.js";
 import minimist from 'minimist';
-import fs from "fs";
+import fsSync from "fs";
+import { promisify } from "util";
 import path from "path";
-import readline from "readline";
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+
+const fs = {
+    readdir: promisify(fsSync.readdir),
+    readFile: promisify(fsSync.readFile),
+    // etc
+  };
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -19,14 +25,7 @@ try {
     process.exit(1);
 }
 
-const readInterface = readline.createInterface({
-  input: fs.createReadStream(path.join(__dirname, '..', '..', schematicDocumentFileInput))
-});
-
-let schematicInput = '';
-for await (const line of readInterface){
-     schematicInput += line;
-}
+const schematicInput = await fs.readFile(path.join(__dirname, '..', '..', schematicDocumentFileInput), 'utf-8');
 
 const engineSchematic = new EngineSchematic(schematicInput);
 console.log(`The schematic sum value is ${engineSchematic.sum()}`);
