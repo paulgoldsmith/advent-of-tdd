@@ -202,7 +202,7 @@ describe('the engine schematic', () => {
         
     });
 
-    describe('sumWithGears', () => {
+    describe('sum with gears', () => {
 
         it('can generate a sum when two numbers are adjacent to a symbol', () => {
             //Arrange
@@ -210,7 +210,7 @@ describe('the engine schematic', () => {
 45-
 ...`);
             //Act
-            const sum = engineSchematic.sum();
+            const sum = engineSchematic.sum(true);
 
             // Assert
             expect(sum).toEqual(77);
@@ -222,7 +222,7 @@ describe('the engine schematic', () => {
 45.
 ...`);
             //Act
-            const sum = engineSchematic.sum();
+            const sum = engineSchematic.sum(true);
 
             // Assert
             expect(sum).toEqual(0);
@@ -241,7 +241,7 @@ describe('the engine schematic', () => {
 ...$.*....
 .664.598..`);
             //Act
-            const sum = engineSchematic.sum();
+            const sum = engineSchematic.sum(true);
 
             // Assert
             expect(sum).toEqual(467835);
