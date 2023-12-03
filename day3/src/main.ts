@@ -29,3 +29,4 @@ const schematicInput = await fs.readFile(path.join(__dirname, '..', '..', schema
 
 const engineSchematic = new EngineSchematic(schematicInput);
 console.log(`The schematic sum value is ${engineSchematic.sum()}`);
+console.log(`The schematic sum with gears value is ${engineSchematic.sum(true)}`);
