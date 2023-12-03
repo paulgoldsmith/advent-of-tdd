@@ -8,10 +8,10 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-let calibrationDocumentFileInput;
+let schematicDocumentFileInput;
 try {
-    calibrationDocumentFileInput = minimist(process.argv.slice(2))['_'][0];
-    if (calibrationDocumentFileInput.length < 1) {
+    schematicDocumentFileInput = minimist(process.argv.slice(2))['_'][0];
+    if (schematicDocumentFileInput.length < 1) {
         throw 'Filename is invalid';
     }
 } catch (e) {
@@ -20,12 +20,13 @@ try {
 }
 
 const readInterface = readline.createInterface({
-  input: fs.createReadStream(path.join(__dirname, '..', '..', calibrationDocumentFileInput))
+  input: fs.createReadStream(path.join(__dirname, '..', '..', schematicDocumentFileInput))
 });
 
-const engineSchematic = new EngineSchematic();
-// for await (const line of readInterface){
-//     document.addLine(line);
-// }
+let schematicInput = '';
+for await (const line of readInterface){
+     schematicInput += line;
+}
 
-// console.log(`The calibrated document value is ${document.sum()}`);
+const engineSchematic = new EngineSchematic(schematicInput);
+console.log(`The schematic sum value is ${engineSchematic.sum()}`);
