@@ -1,7 +1,7 @@
 {
-    "name": "advent-of-tdd-day1",
+    "name": "advent-of-tdd-day3",
     "version": "1.0.0",
-    "description": "Advent of TDD Day 1",
+    "description": "Advent of TDD Day 3",
     "type": "module",
     "engines": {
       "node": ">= 18.12 <19"
