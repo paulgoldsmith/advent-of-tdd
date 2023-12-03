@@ -198,6 +198,74 @@ describe('the engine schematic', () => {
             // Assert
             expect(sum).toEqual(4361);
         });
+
+        
+    });
+
+    describe('sumWithGears', () => {
+
+        it('can generate a sum when two numbers are adjacent to a symbol', () => {
+            //Arrange
+            const engineSchematic = new EngineSchematic(`32.
+45-
+...`);
+            //Act
+            const sum = engineSchematic.sum();
+
+            // Assert
+            expect(sum).toEqual(77);
+        });
+
+        it('can generate a sum when no numbers are adjacent to a symbol', () => {
+            //Arrange
+            const engineSchematic = new EngineSchematic(`32.
+45.
+...`);
+            //Act
+            const sum = engineSchematic.sum();
+
+            // Assert
+            expect(sum).toEqual(0);
+        });
+
+        it('can generate a sum for the engine schematic example', () => {
+            //Arrange
+            const engineSchematic = new EngineSchematic(`467..114..
+...*......
+..35..633.
+......#...
+617*......
+.....+.58.
+..592.....
+......755.
+...$.*....
+.664.598..`);
+            //Act
+            const sum = engineSchematic.sum();
+
+            // Assert
+            expect(sum).toEqual(467835);
+        });
+
+        
+        it('can generate a sum for a modified version of the engine schematic example', () => {
+            //Arrange
+            const engineSchematic = new EngineSchematic(`467..114..
+...@......
+..35...633
+.......#..
+617=......
+.....+.58.
+..592.....
+......755.
+...$./....
+.664.598..`);
+            //Act
+            const sum = engineSchematic.sum();
+
+            // Assert
+            expect(sum).toEqual(4361);
+        });
     });
 
 });
