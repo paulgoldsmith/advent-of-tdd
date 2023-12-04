@@ -27,4 +27,5 @@ try {
 
 const scratchcardInput = await fs.readFile(path.join(__dirname, '..', '..', scratchcardDocumentFileInput), 'utf-8');
 
-console.log(`The scratchcard sum value is ${sumScratchcardWins(scratchcardInput)}`);
+console.log(`The scratchcard sum value for points is ${sumScratchcardWins(scratchcardInput)}`);
+console.log(`The scratchcard sum value for extra cards is ${sumScratchcardWins(scratchcardInput, true)}`);
