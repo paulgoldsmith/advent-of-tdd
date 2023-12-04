@@ -44,7 +44,7 @@ describe('the scratchcards points sum', () => {
         });    
     });
 
-    describe('correct input data', () => {
+    describe('correct input data for points', () => {
         it('can sum points for one scratchcard that has an arbitrary number of spaces between numbers and Card identifiers', () => {
             // Act
             const sum = sumScratchcardWins('Card   1:  1  2 3 4 5 |  1  2  3   5   6  7 8');
@@ -107,4 +107,42 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 1`);
         });
     });
 
+    describe('correct input data for extra cards', () => {
+        it('can sum points for one scratchcard that matches no numbers', () => {
+            // Act
+            const sum = sumScratchcardWins('Card 1: 1 2 3 4 5 | 21 22 23 24 25 26 27 28', true);
+
+            // Assert
+            expect(sum).toEqual(0);
+        });
+
+        it('can sum points for one scratchcard that matches some numbers', () => {
+            // Act
+            const sum = sumScratchcardWins('Card 1: 1 2 3 4 5 | 21 22 23 4 5 6 7 8', true);
+
+            // Assert
+            expect(sum).toEqual(2);
+        });
+
+        it('can sum points for one scratchcard that matches all numbers', () => {
+            // Act
+            const sum = sumScratchcardWins('Card 1: 1 2 3 4 5 | 1 2 3 4 5 6 7 8', true);
+
+            // Assert
+            expect(sum).toEqual(5);
+        });
+
+        it('can sum points for multiple scratchcards from example', () => {
+            // Act
+            const sum = sumScratchcardWins(`Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53
+            Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19
+            Card 3:  1 21 53 59 44 | 69 82 63 72 16 21 14  1
+            Card 4: 41 92 73 84 69 | 59 84 76 51 58  5 54 83
+            Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36
+            Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11`, true);
+
+            // Assert
+            expect(sum).toEqual(30);
+        });
+    });
 });
