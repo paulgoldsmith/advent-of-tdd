@@ -2,7 +2,7 @@ import { sumScratchcardWins } from "./scratchcard.js";
 
 describe('the scratchcards points sum', () => {
 
-    it('can be sum points for scratchcards empty string', () => {
+    it('can sum points for scratchcards input of empty string', () => {
         // Act
         const sum = sumScratchcardWins('');
 
