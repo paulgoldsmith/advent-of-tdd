@@ -45,7 +45,15 @@ describe('the scratchcards points sum', () => {
     });
 
     describe('correct input data', () => {
-        it('can sum points for one scratchcard that matches all numbers for any number of my numbers and lottery numbers', () => {
+        it('can sum points for one scratchcard that has an arbitrary number of spaces between numbers and Card identifiers', () => {
+            // Act
+            const sum = sumScratchcardWins('Card   1:  1  2 3 4 5 |  1  2  3   5   6  7 8');
+
+            // Assert
+            expect(sum).toEqual(8);
+        });
+
+        it('can sum points for one scratchcard that matches some numbers for any number of my numbers and lottery numbers', () => {
             // Act
             const sum = sumScratchcardWins('Card 1:  1  2 3 4 5 6 7 8 9 10 15 20 |  1  2 23 24 25 26 27 28 30 40');
 
