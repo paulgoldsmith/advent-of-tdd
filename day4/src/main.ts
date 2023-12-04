@@ -1,31 +1,30 @@
-// import { Name } from "./Name.js";
-// import minimist from 'minimist';
-// import fs from "fs";
-// import path from "path";
-// import readline from "readline";
-// import { dirname } from 'path';
-// import { fileURLToPath } from 'url';
+import minimist from 'minimist';
+import fsSync from "fs";
+import { promisify } from "util";
+import path from "path";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { sumScratchcardWins } from './scratchcard.js';
 
-// const __dirname = dirname(fileURLToPath(import.meta.url));
+const fs = {
+    readdir: promisify(fsSync.readdir),
+    readFile: promisify(fsSync.readFile),
+    // etc
+  };
 
-// let calibrationDocumentFileInput;
-// try {
-//     calibrationDocumentFileInput = minimist(process.argv.slice(2))['_'][0];
-//     if (calibrationDocumentFileInput.length < 1) {
-//         throw 'Filename is invalid';
-//     }
-// } catch (e) {
-//     console.error(e);
-//     process.exit(1);
-// }
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// const readInterface = readline.createInterface({
-//   input: fs.createReadStream(path.join(__dirname, '..', '..', calibrationDocumentFileInput))
-// });
+let scratchcardDocumentFileInput;
+try {
+    scratchcardDocumentFileInput = minimist(process.argv.slice(2))['_'][0];
+    if (scratchcardDocumentFileInput.length < 1) {
+        throw 'Filename is invalid';
+    }
+} catch (e) {
+    console.error(e);
+    process.exit(1);
+}
 
-// const document = new Name();
-// for await (const line of readInterface){
-//     document.addLine(line);
-// }
+const scratchcardInput = await fs.readFile(path.join(__dirname, '..', '..', scratchcardDocumentFileInput), 'utf-8');
 
-// console.log(`The calibrated document value is ${document.sum()}`);
+console.log(`The scratchcard sum value is ${sumScratchcardWins(scratchcardInput)}`);
