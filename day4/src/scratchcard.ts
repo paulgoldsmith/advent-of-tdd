@@ -1,13 +1,11 @@
 const CARD_FORMAT = /^Card \d+:([\s\d]+)\|([\s\d]+)$/;
 export function sumScratchcardWins(scratchcards: string): number {
     return scratchcards.split('\n').reduce((prev, curr) => {
-        if (!curr) {
-            return prev;
-        }
-        const [matched, myNumbersInput, lotteryNumbersInput] = curr.match(CARD_FORMAT);
-        if (!matched) {
+        const cardMatch = curr.match(CARD_FORMAT);
+        if (!cardMatch) {
             throw 'Unexpected format for scratchcards';
         }
+        const [myNumbersInput, lotteryNumbersInput] = cardMatch.splice(1);
         const myNumbers = myNumbersInput
             .split(' ')
             .filter(value => value.trim().length > 0)
