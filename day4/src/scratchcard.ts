@@ -5,7 +5,7 @@ export function sumScratchcardWins(scratchcards: string, extraCards: boolean = f
         if (!cardMatch) {
             throw `Unexpected format for scratchcard with content containing [${curr}]`;
         }
-        const [myNumbersInput, lotteryNumbersInput] = cardMatch.splice(1);
+        const [myNumbersInput, lotteryNumbersInput] = cardMatch.slice(1);
         const myNumbers = myNumbersInput
             .split(' ')
             .filter(value => value.trim().length > 0)
